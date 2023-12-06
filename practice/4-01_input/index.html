@@ -1,0 +1,52 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>テンプレート</title>
+<link href="../../_common/images/favicon.ico" rel="shortcut icon">
+<link href="https://fonts.googleapis.com/css?family=M+PLUS+1p:400,500" rel="stylesheet">
+<link href="../../_common/css/style.css" rel="stylesheet">
+</head>
+<body>
+<header>
+<div class="container">
+<h1>タイトル</h1>
+<h2>サブタイトル</h2>
+</div><!-- /.container -->
+</header>
+<main>
+<div class="container">
+<section>
+    <!-- action: データを送信する先のURL -->
+    <form action="#" id="form">
+        <!-- name属性：入力されたデータがサーバに送信される際に、そのデータにつく「名前」となる。word = ~~~ -->
+        <input type="text" name="word">
+        <input type="submit" value="検索">
+    </form>
+    <p id="output"></p>
+</section>
+</div><!-- /.container -->
+</main>
+<footer>
+<div class="container">
+<p>JavaScript Samples</p>
+</div><!-- /.container -->
+</footer>
+<script>
+    'use strict';
+    // onsubmitイベント：送信ボタンがクリックされた直後 かつ 入力内容がサーバーが送信される直前に発生。
+    document.getElementById('form').onsubmit = function(event) {
+        for(let p in event){
+            console.log(`${p} = ${event[p]}`);
+        }
+        // preventDefault()：HTMLタグで事前に定義されている基本動作をキャンセルする。
+        // formタグの場合は、「何かアクションが発生した際にaction属性で指定したURLに移動する」という基本動作があるためそれをキャンセルしている。
+        event.preventDefault();
+        // console.log('クリックされました');
+        const search = document.getElementById('form').word.value;
+        document.getElementById('output').textContent = `「${search}」の検索中...`;
+    };
+</script>
+</body>
+</html>
